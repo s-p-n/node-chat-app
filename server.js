@@ -20,6 +20,13 @@ app.get('/client', function (req, res) {
 	res.sendFile(__dirname + '/client.js');
 });
 
+app.get ('/assets/:type/:asset', function (req, res) {
+	var asset = req.params.asset;
+	var type = req.params.type;
+	console.log("Asset:", asset);
+	res.sendFile(__dirname + '/assets/' + type + '/' + asset);
+});
+
 app.get('/history', function (req, res) {
 	res.send('var message_history = ' + JSON.stringify(message_log));
 });
