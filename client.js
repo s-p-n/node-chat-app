@@ -33,6 +33,25 @@ function parseMessage (msg) {
 	return msg;
 }
 
+function sendMessage () {
+	var blocked = false;
+	return function () {
+		var msg = $('#m').val();
+		if (msg.length === 0 || blocked) {
+			return false;
+		}
+		blocked = true;
+		socket.emit('message', $('#m').val());
+		$('#m').val('');
+
+		setInterval(function () {
+			blocked = false;
+		}, 5000);
+
+		return false;
+	};
+}
+
 function autoScroll () {
 	var height = 0;
 	$('#messages li').each(function () {
@@ -62,16 +81,7 @@ $('#name').blur(function () {
 	socket.emit('nickname', $('#name').val());
 })
 
-$('form').submit(function(){
-	var msg = $('#m').val();
-	if (msg.length === 0) {
-		alert("Please enter a message.");
-		return false;
-	}
-	socket.emit('message', $('#m').val());
-	$('#m').val('');
-	return false;
-});
+$('form').submit(sendMessage());
 
 (function () {
 	//var shiftDown = false;

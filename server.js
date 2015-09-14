@@ -23,7 +23,7 @@ app.get('/client', function (req, res) {
 app.get ('/assets/:type/:asset', function (req, res) {
 	var asset = req.params.asset;
 	var type = req.params.type;
-	console.log("Asset:", asset);
+	//console.log("Asset:", asset);
 	res.sendFile(__dirname + '/assets/' + type + '/' + asset);
 });
 
@@ -33,19 +33,22 @@ app.get('/history', function (req, res) {
 
 io.on('connection', function (socket) {
 	var nickname = "Anonymous";
-	console.log('User connected.');
+	//console.log('User connected.');
 	socket.on('nickname', function (name) {
-		console.log("User set nickname:", name);
+		//console.log("User set nickname:", name);
 		nickname = name;
 	});
 	socket.on('message', function (msg) {
 		var message = nickname + ': ' + msg;
+		if (message_log.length > 10) {
+			message_log.shift();
+		}
 		message_log.push(message);
-		console.log(message);
+		//console.log(message);
 		io.emit('chat message', message);
 	});
 	socket.on('disconnect', function () {
-		console.log("User disconnected.");
+		//console.log("User disconnected.");
 	});
 });
 
