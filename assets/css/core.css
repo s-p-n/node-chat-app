@@ -15,6 +15,7 @@ html {
 body {
 	background-color: #ecf0f1;
 	min-width: 300px;
+	padding: 0 15px;
 	font-family: 'Lato', sans-serif;;
 	font-size: 16px;
 	position: relative;
@@ -177,4 +178,46 @@ textarea {
 }
 #messages>li:nth-child(odd) {
 	background: #eee;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 500px) {
+
+	.chat-box {
+		margin-top: 15px;
+	}
+
+	.chat-box .chat-messages {
+		height: 300px;
+	}
+
+	.chat-form .left,
+	.chat-form .right,
+	.chat-form .form-name,
+	.chat-form .form-message {
+		width: 100%;
+		float: none;
+	}
+
+	.chat-form .form-name {
+		height: 25px;
+	}
+
+	.chat-form .form-message {
+		max-width: 100%;
+		margin-top: 10px;
+	}
+
+	.chat-form > button {
+		height: 40px;
+	}
+
+	.chat-form > button:hover {
+		opacity: .9
+	}
+
+	.chat-form > button > i {
+		font-size: 20px;
+	}
 }
