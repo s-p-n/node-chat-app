@@ -8,13 +8,15 @@ function parseCookies (cookieString) {
 	if (cookieString === void 0 || cookieString.length === 0) {
 		return {};
 	}
+
+	console.log(cookieString);
 	var cookies = {};
 	var cookie_split1 = cookieString.split(';');
 	var cookie_split2;
 	var i;
 	for (i = 0; i < cookie_split1.length; i += 1) {
 		cookie_split2 = cookie_split1[i].split('=');
-		cookies[cookie_split2[0]] = cookie_split2[1];
+		cookies[cookie_split2[0].trim()] = cookie_split2[1];
 	}
 	return cookies;
 }
@@ -54,10 +56,11 @@ app.get('/data', function (req, res) {
 io.on('connection', function (socket) {
 	var nickname = "Anonymous";
 	var cookies = parseCookies(socket.handshake.headers.cookie);
+	//console.log("Cookies:", cookies);
 	if (cookies.nickname !== void 0) {
 		nickname = cookies.nickname;
 	}
-	//console.log('User connected.');
+	console.log(nickname + ' connected.');
 	socket.on('nickname', function (name) {
 		//console.log("User set nickname:", name);
 
@@ -73,7 +76,7 @@ io.on('connection', function (socket) {
 		io.emit('chat message', message);
 	});
 	socket.on('disconnect', function () {
-		//console.log("User disconnected.");
+		console.log(nickname, "disconnected.");
 	});
 });
 

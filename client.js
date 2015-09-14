@@ -29,7 +29,6 @@ function parseMessage (msg) {
 	for (token in parseMap) {
 		msg = msg.replace(token, parseMap[token]);
 	}
-	console.log("Escaped msg:", msg);
 	return msg;
 }
 
@@ -46,10 +45,22 @@ function sendMessage () {
 
 		setInterval(function () {
 			blocked = false;
-		}, 5000);
+		}, 2000);
 
 		return false;
 	};
+}
+
+function appendMessage (msg) {
+	msg = parseMessage(msg);
+	var lastMsg = $('#messages li:last');
+	var msgName = msg.split(':')[0];
+	var lastMsgName = lastMsg.text().split(':')[0];
+	if (lastMsgName === msgName) {
+		lastMsg.append('<br>' + msg.split(':')[1]);
+	} else {
+		$('#messages').append($('<li>').html(msg));
+	}
 }
 
 function autoScroll () {
@@ -57,7 +68,6 @@ function autoScroll () {
 	$('#messages li').each(function () {
 		height += $(this).height();
 	});
-	console.log(height);
 	$("#messages").animate({ scrollTop: height }, "slow");
 }
 
@@ -69,8 +79,7 @@ function init () {
 	}
 	var i, msg;
 	for (i = 0; i < message_history.length; i += 1) {
-		msg = parseMessage(message_history[i]);
-		$('#messages').append($('<li>').html(msg));
+		appendMessage(message_history[i]);
 	}
 	autoScroll();
 
@@ -105,8 +114,7 @@ $('form').submit(sendMessage());
 	});
 }());
 socket.on('chat message', function (msg) {
-	msg = parseMessage(msg);
-	$('#messages').append($('<li>').html(msg));
+	appendMessage(msg);
 	audio.play();
 	autoScroll();
 });
