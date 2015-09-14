@@ -1,0 +1,24 @@
+{
+  "name": "node-chat-app",
+  "version": "0.0.1",
+  "description": "Simple chat app, just for fun.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/s-p-n/node-chat-app.git"
+  },
+  "keywords": [
+    "node",
+    "chat",
+    "socket.io"
+  ],
+  "author": "Spencer A. Lockhart",
+  "license": "BSD-2",
+  "bugs": {
+    "url": "https://github.com/s-p-n/node-chat-app/issues"
+  },
+  "homepage": "https://github.com/s-p-n/node-chat-app"
+}
