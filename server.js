@@ -8,6 +8,14 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/audio.mp3', function (req, res) {
+	res.sendFile(__dirname + '/13290__schademans__pipe9.mp3');
+});
+
+app.get('/audio.wav', function (req, res) {
+	res.sendFile(__dirname + '/13290__schademans__pipe9.wav');
+});
+
 app.get('/client', function (req, res) {
 	res.sendFile(__dirname + '/client.js');
 });

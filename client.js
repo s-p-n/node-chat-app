@@ -1,4 +1,11 @@
 var socket = io();
+var audio;
+
+if (window.navigator.userAgent.indexOf("MSIE ") === -1) {
+	audio = new Audio('audio.wav');
+} else {
+	audio = new Audio('audio.mp3');
+}
 
 var i;
 for (i = 0; i < message_history.length; i += 1) {
@@ -17,4 +24,5 @@ $('form').submit(function(){
 
 socket.on('chat message', function (msg) {
 	$('#messages').append($('<li>').text(msg));
+	audio.play();
 });
