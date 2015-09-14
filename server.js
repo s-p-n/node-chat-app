@@ -1,8 +1,22 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-
+var cookieParser = require('cookie-parser');
 var message_log = [];
+
+function parseCookies (cookieString) {
+	var cookies = {};
+	var cookie_split1 = cookieString.split(';');
+	var cookie_split2;
+	var i;
+	for (i = 0; i < cookie_split1.length; i += 1) {
+		cookie_split2 = cookie_split1[i].split('=');
+		cookies[cookie_split2[0]] = cookie_split2[1];
+	}
+	return cookies;
+}
+
+app.use(cookieParser());
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
@@ -27,15 +41,23 @@ app.get ('/assets/:type/:asset', function (req, res) {
 	res.sendFile(__dirname + '/assets/' + type + '/' + asset);
 });
 
-app.get('/history', function (req, res) {
-	res.send('var message_history = ' + JSON.stringify(message_log));
+app.get('/data', function (req, res) {
+	var data = '';
+	data += 'var cookies = ' + JSON.stringify(req.cookies) + ';\n';
+	data += 'var message_history = ' + JSON.stringify(message_log) + ';\n';
+	res.send(data);
 });
 
 io.on('connection', function (socket) {
 	var nickname = "Anonymous";
+	var cookies = parseCookies(socket.handshake.headers.cookie);
+	if (cookies.nickname !== void 0) {
+		nickname = cookies.nickname;
+	}
 	//console.log('User connected.');
 	socket.on('nickname', function (name) {
 		//console.log("User set nickname:", name);
+
 		nickname = name;
 	});
 	socket.on('message', function (msg) {

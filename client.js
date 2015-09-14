@@ -73,12 +73,22 @@ function init () {
 		$('#messages').append($('<li>').html(msg));
 	}
 	autoScroll();
+
+	if (cookies.nickname !== void 0) {
+		$('#name').val(cookies.nickname);
+	}
 }
 
 init();
 
 $('#name').blur(function () {
-	socket.emit('nickname', $('#name').val());
+	var name = $('#name').val();
+	if (name.length === 0) {
+		name = 'Anonymous';
+	}
+	document.cookie = "nickname=" + name;
+	socket.emit('nickname', name);
+	
 })
 
 $('form').submit(sendMessage());
