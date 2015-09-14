@@ -12,4 +12,10 @@ After that, run:
     
     node server.js
 
+You should see something like:
+    
+    Listening.
+
 Then navigate to localhost:3000, and you have a chat app running!
+
+If anything doesn't work, please file an issue for this project on Github.
