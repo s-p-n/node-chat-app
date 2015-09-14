@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 var message_log = [];
 
 function parseCookies (cookieString) {
+	if (cookieString === void 0 || cookieString.length === 0) {
+		return {};
+	}
 	var cookies = {};
 	var cookie_split1 = cookieString.split(';');
 	var cookie_split2;
