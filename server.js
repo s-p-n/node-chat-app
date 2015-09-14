@@ -28,15 +28,15 @@ app.get('/', function(req, res){
 });
 
 app.get('/audio.mp3', function (req, res) {
-	res.sendFile(__dirname + '/13290__schademans__pipe9.mp3');
+	res.sendFile(__dirname + '/assets/audio/13290__schademans__pipe9.mp3');
 });
 
 app.get('/audio.wav', function (req, res) {
-	res.sendFile(__dirname + '/13290__schademans__pipe9.wav');
+	res.sendFile(__dirname + '/assets/audio/13290__schademans__pipe9.wav');
 });
 
 app.get('/client', function (req, res) {
-	res.sendFile(__dirname + '/client.js');
+	res.sendFile(__dirname + '/assets/js/client.js');
 });
 
 app.get ('/assets/:type/:asset', function (req, res) {
