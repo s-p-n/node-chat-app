@@ -1,0 +1,171 @@
+/* Reset */
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: inherit;
+	color: inherit;
+	box-sizing: inherit;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #ecf0f1;
+	min-width: 300px;
+	font-family: 'Lato', sans-serif;;
+	font-size: 16px;
+	position: relative;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	border: 0;
+}
+
+a {
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+ul,
+form {
+	display: block;
+}
+
+input[type="text"],
+input[type="search"],
+input[type="email"],
+select,
+button,
+textarea {
+	box-shadow: none;
+	border-radius: 0;
+}
+
+input[type="text"],
+input[type="search"],
+input[type="email"],
+button,
+textarea {
+	-webkit-appearance: none;
+}
+
+input[type="text"],
+input[type="search"],
+input[type="email"],
+button {
+	border: 0;
+}
+
+input[type="text"],
+input[type="search"],
+input[type="email"] {
+	background-color: color('grey');
+	padding: 0 8px;
+}
+
+button {
+	display: block;
+	background: transparent;
+	line-height: 1;
+	cursor: pointer;
+}
+
+textarea {
+	max-width: 100%;
+	padding: 8px;
+	overflow: auto;
+}
+
+/* Main Styles */
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.chat-box .chat-form:after,
+.chat-form .left:after {
+	content: '';
+	display: table;
+	clear: both;
+}
+
+.chat-box {
+	max-width: 500px;
+	margin: 40px auto 0;
+	opacity: .99;
+	overflow: hidden;
+	border-radius: 8px;
+	box-shadow: 0 0 20px 0 rgba(0,0,0,.05);
+}
+
+.chat-box .chat-messages {
+	background-color: #fff;
+	width: 100%;
+	height: 500px;
+	padding: 20px;
+}
+
+.chat-box .chat-form {
+	background-color: #34495e;
+	width: 100%;
+}
+
+.chat-form .left {
+	width: 85%;
+	padding: 10px;
+}
+
+.chat-form .right {
+	width: 15%;
+}
+
+.chat-form .form-name,
+.chat-form .form-message {
+	display: block;
+	border: 0;
+}
+
+.chat-form .form-name {
+	width: 25%;
+	height: 25px;
+	float: left;
+}
+
+.chat-form .form-message {
+	width: 73%;
+	max-width: 73%;
+	height: 50px;
+	line-height: 1.5;
+	float: right;
+	resize: none;
+}
+
+.chat-form > button {
+	background-color: #27ae60;
+	height: 70px;
+	color: #fff;
+	text-align: center;
+}
+
+.chat-form > button:hover {
+	opacity: .9
+}
+
+.chat-form > button > i {
+	font-size: 20px;
+}
